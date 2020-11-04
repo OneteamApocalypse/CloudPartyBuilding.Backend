@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="apocalypse.cloudpartybuilding.mapper.CpbNewsMultimediaMapper">
+  <resultMap id="BaseResultMap" type="apocalypse.cloudpartybuilding.pojo.CpbNewsMultimedia">
+    <constructor>
+      <idArg column="id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="news_multimedia_path" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="news_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, news_multimedia_path, news_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cpb_news_multimedia
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cpb_news_multimedia
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNewsMultimedia">
+    insert into cpb_news_multimedia (id, news_multimedia_path, news_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{newsMultimediaPath,jdbcType=VARCHAR}, #{newsId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNewsMultimedia">
+    insert into cpb_news_multimedia
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="newsMultimediaPath != null">
+        news_multimedia_path,
+      </if>
+      <if test="newsId != null">
+        news_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="newsMultimediaPath != null">
+        #{newsMultimediaPath,jdbcType=VARCHAR},
+      </if>
+      <if test="newsId != null">
+        #{newsId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNewsMultimedia">
+    update cpb_news_multimedia
+    <set>
+      <if test="newsMultimediaPath != null">
+        news_multimedia_path = #{newsMultimediaPath,jdbcType=VARCHAR},
+      </if>
+      <if test="newsId != null">
+        news_id = #{newsId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNewsMultimedia">
+    update cpb_news_multimedia
+    set news_multimedia_path = #{newsMultimediaPath,jdbcType=VARCHAR},
+      news_id = #{newsId,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

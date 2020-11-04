@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="apocalypse.cloudpartybuilding.mapper.CpbUsersMapper">
+  <resultMap id="BaseResultMap" type="apocalypse.cloudpartybuilding.pojo.CpbUsers">
+    <constructor>
+      <idArg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="user_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="img_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="users_sex" javaType="java.lang.String" jdbcType="CHAR" />
+      <arg column="branch_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="organization_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="users_phone" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="users_email" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="users_political" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="users_join_Date" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="users_correctionDate" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="role_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="users_password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="wechat_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="users_status" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, user_name, img_id, users_sex, branch_id, organization_id, users_phone, users_email, 
+    users_political, users_join_Date, users_correctionDate, role_id, users_password, 
+    wechat_id, users_status
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cpb_users
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cpb_users
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="apocalypse.cloudpartybuilding.pojo.CpbUsers">
+    insert into cpb_users (user_id, user_name, img_id, 
+      users_sex, branch_id, organization_id, 
+      users_phone, users_email, users_political, 
+      users_join_Date, users_correctionDate, role_id, 
+      users_password, wechat_id, users_status
+      )
+    values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{imgId,jdbcType=VARCHAR}, 
+      #{usersSex,jdbcType=CHAR}, #{branchId,jdbcType=INTEGER}, #{organizationId,jdbcType=INTEGER}, 
+      #{usersPhone,jdbcType=INTEGER}, #{usersEmail,jdbcType=VARCHAR}, #{usersPolitical,jdbcType=VARCHAR}, 
+      #{usersJoinDate,jdbcType=DATE}, #{usersCorrectiondate,jdbcType=DATE}, #{roleId,jdbcType=INTEGER}, 
+      #{usersPassword,jdbcType=VARCHAR}, #{wechatId,jdbcType=INTEGER}, #{usersStatus,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbUsers">
+    insert into cpb_users
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="imgId != null">
+        img_id,
+      </if>
+      <if test="usersSex != null">
+        users_sex,
+      </if>
+      <if test="branchId != null">
+        branch_id,
+      </if>
+      <if test="organizationId != null">
+        organization_id,
+      </if>
+      <if test="usersPhone != null">
+        users_phone,
+      </if>
+      <if test="usersEmail != null">
+        users_email,
+      </if>
+      <if test="usersPolitical != null">
+        users_political,
+      </if>
+      <if test="usersJoinDate != null">
+        users_join_Date,
+      </if>
+      <if test="usersCorrectiondate != null">
+        users_correctionDate,
+      </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
+      <if test="usersPassword != null">
+        users_password,
+      </if>
+      <if test="wechatId != null">
+        wechat_id,
+      </if>
+      <if test="usersStatus != null">
+        users_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgId != null">
+        #{imgId,jdbcType=VARCHAR},
+      </if>
+      <if test="usersSex != null">
+        #{usersSex,jdbcType=CHAR},
+      </if>
+      <if test="branchId != null">
+        #{branchId,jdbcType=INTEGER},
+      </if>
+      <if test="organizationId != null">
+        #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="usersPhone != null">
+        #{usersPhone,jdbcType=INTEGER},
+      </if>
+      <if test="usersEmail != null">
+        #{usersEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="usersPolitical != null">
+        #{usersPolitical,jdbcType=VARCHAR},
+      </if>
+      <if test="usersJoinDate != null">
+        #{usersJoinDate,jdbcType=DATE},
+      </if>
+      <if test="usersCorrectiondate != null">
+        #{usersCorrectiondate,jdbcType=DATE},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="usersPassword != null">
+        #{usersPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatId != null">
+        #{wechatId,jdbcType=INTEGER},
+      </if>
+      <if test="usersStatus != null">
+        #{usersStatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbUsers">
+    update cpb_users
+    <set>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="imgId != null">
+        img_id = #{imgId,jdbcType=VARCHAR},
+      </if>
+      <if test="usersSex != null">
+        users_sex = #{usersSex,jdbcType=CHAR},
+      </if>
+      <if test="branchId != null">
+        branch_id = #{branchId,jdbcType=INTEGER},
+      </if>
+      <if test="organizationId != null">
+        organization_id = #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="usersPhone != null">
+        users_phone = #{usersPhone,jdbcType=INTEGER},
+      </if>
+      <if test="usersEmail != null">
+        users_email = #{usersEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="usersPolitical != null">
+        users_political = #{usersPolitical,jdbcType=VARCHAR},
+      </if>
+      <if test="usersJoinDate != null">
+        users_join_Date = #{usersJoinDate,jdbcType=DATE},
+      </if>
+      <if test="usersCorrectiondate != null">
+        users_correctionDate = #{usersCorrectiondate,jdbcType=DATE},
+      </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="usersPassword != null">
+        users_password = #{usersPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="wechatId != null">
+        wechat_id = #{wechatId,jdbcType=INTEGER},
+      </if>
+      <if test="usersStatus != null">
+        users_status = #{usersStatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="apocalypse.cloudpartybuilding.pojo.CpbUsers">
+    update cpb_users
+    set user_name = #{userName,jdbcType=VARCHAR},
+      img_id = #{imgId,jdbcType=VARCHAR},
+      users_sex = #{usersSex,jdbcType=CHAR},
+      branch_id = #{branchId,jdbcType=INTEGER},
+      organization_id = #{organizationId,jdbcType=INTEGER},
+      users_phone = #{usersPhone,jdbcType=INTEGER},
+      users_email = #{usersEmail,jdbcType=VARCHAR},
+      users_political = #{usersPolitical,jdbcType=VARCHAR},
+      users_join_Date = #{usersJoinDate,jdbcType=DATE},
+      users_correctionDate = #{usersCorrectiondate,jdbcType=DATE},
+      role_id = #{roleId,jdbcType=INTEGER},
+      users_password = #{usersPassword,jdbcType=VARCHAR},
+      wechat_id = #{wechatId,jdbcType=INTEGER},
+      users_status = #{usersStatus,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

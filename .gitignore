@@ -25,4 +25,7 @@ hs_err_pid*
 # idea
 .idea
 *.iml
+target
 src/main/resources/application.properties
+src/test/java
+
