@@ -16,4 +16,8 @@ public interface CpbUsersMapper {
     int updateByPrimaryKeySelective(CpbUsers record);
 
     int updateByPrimaryKey(CpbUsers record);
+
+    CpbUsers signin(String usersPhone, String usersPassword);
+
+    CpbUsers signup(CpbUsers cpbUsers);
 }
