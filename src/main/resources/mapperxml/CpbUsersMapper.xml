@@ -25,6 +25,19 @@
     users_political, users_join_Date, users_correctionDate, role_id, users_password, 
     wechat_id, users_status
   </sql>
+
+  <!--  登录  -->
+  <select id="signin" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cpb_users
+    where users_phone = #{usersPhone,jdbcType=VARCHAR} AND users_password=#{usersPassword,jdbcType=VARCHAR} AND users_status = 1
+  </select>
+  <!--  注册  -->
+  <insert id="signup" parameterType="apocalypse.cloudpartybuilding.pojo.CpbUsers" useGeneratedKeys="true" keyProperty="user_id">
+    insert into cpb_users(users_phone, users_password) values(#{usersPhone}, #{usersPassword,jdbcType=VARCHAR})
+  </insert>
+
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
