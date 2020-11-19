@@ -34,8 +34,8 @@
     where users_phone = #{usersPhone,jdbcType=VARCHAR} AND users_password=#{usersPassword,jdbcType=VARCHAR} AND users_status = 1
   </select>
   <!--  注册  -->
-  <insert id="signup" parameterType="apocalypse.cloudpartybuilding.pojo.CpbUsers" useGeneratedKeys="true" keyProperty="user_id">
-    insert into cpb_users(users_phone, users_password) values(#{usersPhone}, #{usersPassword,jdbcType=VARCHAR})
+  <insert id="signup" parameterType="apocalypse.cloudpartybuilding.pojo.CpbUsers">
+    insert into cpb_users(user_name, users_password, users_phone) values(#{userName,jdbcType=VARCHAR}, #{usersPassword,jdbcType=VARCHAR}, #{usersPhone,jdbcType=INTEGER})
   </insert>
 
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -57,7 +57,7 @@
       )
     values (#{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{imgId,jdbcType=VARCHAR}, 
       #{usersSex,jdbcType=CHAR}, #{branchId,jdbcType=INTEGER}, #{organizationId,jdbcType=INTEGER}, 
-      #{usersPhone,jdbcType=INTEGER}, #{usersEmail,jdbcType=VARCHAR}, #{usersPolitical,jdbcType=VARCHAR}, 
+      #{usersPhone,jdbcType=INTEGER}, #{usersEmail,jdbcType=VARCHAR}, #{usersPolitical,jdbcType=VARCHAR},
       #{usersJoinDate,jdbcType=DATE}, #{usersCorrectiondate,jdbcType=DATE}, #{roleId,jdbcType=INTEGER}, 
       #{usersPassword,jdbcType=VARCHAR}, #{wechatId,jdbcType=INTEGER}, #{usersStatus,jdbcType=INTEGER}
       )

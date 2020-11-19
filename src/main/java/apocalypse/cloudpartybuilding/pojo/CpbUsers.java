@@ -1,14 +1,11 @@
 package apocalypse.cloudpartybuilding.pojo;
 
-import lombok.Generated;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
-@Setter
-@Getter
-@Generated
+@Data
+@AllArgsConstructor
 public class CpbUsers {
     private Integer userId;
 
@@ -40,7 +37,8 @@ public class CpbUsers {
 
     private Integer usersStatus;
 
-    public CpbUsers(Integer usersPhone, String usersPassword) {
+    public CpbUsers(String userName,String usersPassword,Integer usersPhone) {
+        this.userName = userName;
         this.usersPhone = usersPhone;
         this.usersPassword = usersPassword;
     }

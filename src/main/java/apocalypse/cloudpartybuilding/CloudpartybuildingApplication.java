@@ -9,9 +9,9 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 
 @EnableScheduling
 @SpringBootApplication
-//@EnableAutoConfiguration(exclude = {
-//		org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class
-//})
+@EnableAutoConfiguration(exclude = {
+		org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class
+})
 @MapperScan("apocalypse.cloudpartybuilding.mapper")
 public class CloudpartybuildingApplication {
 

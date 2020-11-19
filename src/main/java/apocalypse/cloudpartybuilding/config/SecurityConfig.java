@@ -31,57 +31,40 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-@Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true) //开启security注解
+//@Configuration
+//@EnableWebSecurity(debug = true)//已经自动配置了，此处只是为了打印debug信息
+//@EnableGlobalMethodSecurity(prePostEnabled = true) //开启security注解
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     //告诉系统我的密码不加密，输入账号和密码就可以登录上来
+    // 指定密码的加密方式
+    @SuppressWarnings("deprecation")
     @Bean
     PasswordEncoder passwordEncoder(){
+        // 不对密码进行加密
         return NoOpPasswordEncoder.getInstance();
     }
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        //也可以将用户名密码写在内存，不推荐
-        auth.inMemoryAuthentication().withUser("admin").password("111111").roles("USER");
-    }
 
-
-    @Bean
+    // 配置用户及其对应的角色
     @Override
-    protected AuthenticationManager authenticationManager() throws Exception {
-        return super.authenticationManager();
-    }
-
-    @Override
-    public void configure(WebSecurity web) throws Exception {
-        //解决静态资源被拦截的问题
-        web.ignoring().antMatchers("/somewhere/**");
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        //允许所有用户访问"/"和"/home"
-        http.authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
-                //其他地址的访问均需验证权限
-                .anyRequest().authenticated()
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .withUser("root").password("123").roles("ADMIN","DBA")
                 .and()
-                .formLogin()
-                //指定登录页是"/login"
-                .loginPage("/login")
-                //登录成功后默认跳转到
-                .defaultSuccessUrl("/welcome")
-                .permitAll()
+                .withUser("admin").password("123").roles("ADMIN","USER")
                 .and()
-                .logout()
-                .logoutUrl("/logout")
-                //退出登录后的默认url是"/login"
-                .logoutSuccessUrl("/login")
-                .permitAll();
-        //解决非thymeleaf的form表单提交被拦截问题
-        http.csrf().disable();
+                .withUser("hangge").password("123").roles("DBA");
+    }
 
+    // 配置 URL 访问权限
+    @Override
+    protected  void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests() // 开启 HttpSecurity 配置
+                .antMatchers("/admin/**").hasRole("ADMIN") // admin/** 模式URL必须具备ADMIN角色
+                .antMatchers("/user/**").access("hasAnyRole('ADMIN','USER')") // 该模式需要ADMIN或USER角色
+                .antMatchers("/db/**").access("hasRole('ADMIN') and hasRole('DBA')") // 需ADMIN和DBA角色
+                .anyRequest().authenticated() // 用户访问其它URL都必须认证后访问（登录后访问）
+                .and().formLogin().loginProcessingUrl("/login").permitAll() // 开启表单登录并配置登录接口
+                .and().csrf().disable(); // 关闭csrf
         //解决中文乱码问题
         CharacterEncodingFilter filter = new CharacterEncodingFilter();
         filter.setEncoding("UTF-8");

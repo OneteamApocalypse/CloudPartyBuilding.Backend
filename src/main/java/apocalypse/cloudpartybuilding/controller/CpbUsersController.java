@@ -4,6 +4,7 @@ package apocalypse.cloudpartybuilding.controller;
 import apocalypse.cloudpartybuilding.pojo.CpbUsers;
 import apocalypse.cloudpartybuilding.service.CpbUsersService;
 import apocalypse.cloudpartybuilding.util.RespBean;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,15 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
-import javax.imageio.ImageIO;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.util.Map;
-
+@Slf4j
 @RestController//返回的数据都是json
 @RequestMapping("/user")
 public class CpbUsersController {
@@ -28,8 +25,9 @@ public class CpbUsersController {
 
 
     @RequestMapping(value ="/selectid",method = RequestMethod.GET)
-    public CpbUsers selectidUser(){
+    public CpbUsers selectidUser() {
         return cpbUsersService.selectByPrimaryKey(1);
+    }
     //验证码
     @GetMapping("/captcha")
     public void DefaultCaptcha(HttpServletRequest httpServletRequest,
@@ -42,13 +40,21 @@ public class CpbUsersController {
     public RespBean SignUp(@RequestBody Map<String, String> jsonParam, HttpSession session) {
         Integer usersPhone = Integer.parseInt(jsonParam.get("phone"));
         String usersPassword = jsonParam.get("password");
-        CpbUsers cpbUser = new CpbUsers(usersPhone, usersPassword);
-        cpbUsersService.signup(cpbUser);
-        if (cpbUser != null) {
-            return new RespBean("success", "注册成功");
-        } else {
-            return new RespBean("error", "注册失败");
+        String username = jsonParam.get("username");
+        CpbUsers cpbUser = new CpbUsers(username,usersPassword,usersPhone);
+        log.warn(cpbUser.toString());
+        try {
+            int signup = cpbUsersService.signup(cpbUser);
+            if(signup==0){
+                return new RespBean("error", "注册失败");
+            }else{
+                return new RespBean("success", "注册成功");
+            }
+        }catch (Exception e){
+            return new RespBean("error", "事务错误，账号存在");
         }
+
+
     }
 
     //登录
