@@ -1,6 +1,5 @@
 package apocalypse.cloudpartybuilding.controller;
 
-
 import apocalypse.cloudpartybuilding.pojo.CpbUsers;
 import apocalypse.cloudpartybuilding.service.CpbUsersService;
 import apocalypse.cloudpartybuilding.util.CaptchaGenerator;
@@ -40,7 +39,7 @@ public class CpbUsersController {
             .createImage();  //生成图片
 
 
-    @RequestMapping(value ="/selectid",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectid", method = RequestMethod.GET)
     public CpbUsers selectidUser() {
         return cpbUsersService.selectByPrimaryKey(1);
     }
@@ -74,14 +73,14 @@ public class CpbUsersController {
             } else {
                 return new RespBean("success", "注册成功");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             return new RespBean("error", "事务错误，账号存在");
         }
     }
 
     //登录
     @PostMapping(value = "/signin", produces = "application/json;charset=utf-8;")
-    public RespBean SingIn (@RequestBody Map<String, String> jsonParam, HttpSession session) {
+    public RespBean SingIn(@RequestBody Map<String, String> jsonParam, HttpSession session) {
         String usersPhone = jsonParam.get("phone");
         String usersPassword = jsonParam.get("password");
         String captchaCode = jsonParam.get("captcha");
@@ -100,4 +99,8 @@ public class CpbUsersController {
             return new RespBean("error", "登录失败");
         }
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 71f766b0b4a489075b559b943c34d2eaef9e3803

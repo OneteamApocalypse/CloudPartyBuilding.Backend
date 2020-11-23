@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="apocalypse.cloudpartybuilding.mapper.CpbmeetingMapper">
+  <resultMap id="BaseResultMap" type="apocalypse.cloudpartybuilding.pojo.CpbMeeting">
+    <constructor>
+      <idArg column="meeting_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="meeting_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="meeting_record" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="meeting_time" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="meeting_place" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="meeting_host" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="meeting_state" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    meeting_id, meeting_name, meeting_record, meeting_time, meeting_place, meeting_host, meeting_state
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cpb_meeting
+    where meeting_id = #{meetingId,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cpb_meeting
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from cpb_meeting
+    where meeting_id = #{meetingId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="apocalypse.cloudpartybuilding.pojo.CpbMeeting">
+    insert into cpb_meeting (meeting_id, meeting_name, meeting_record, 
+      meeting_time, meeting_place, meeting_host, 
+      meeting_state)
+    values (#{meetingId,jdbcType=VARCHAR}, #{meetingName,jdbcType=VARCHAR}, #{meetingRecord,jdbcType=VARCHAR}, 
+      #{meetingTime,jdbcType=DATE}, #{meetingPlace,jdbcType=VARCHAR}, #{meetingHost,jdbcType=VARCHAR}, 
+      #{meetingState,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbMeeting">
+    insert into cpb_meeting
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="meetingId != null">
+        meeting_id,
+      </if>
+      <if test="meetingName != null">
+        meeting_name,
+      </if>
+      <if test="meetingRecord != null">
+        meeting_record,
+      </if>
+      <if test="meetingTime != null">
+        meeting_time,
+      </if>
+      <if test="meetingPlace != null">
+        meeting_place,
+      </if>
+      <if test="meetingHost != null">
+        meeting_host,
+      </if>
+      <if test="meetingState != null">
+        meeting_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="meetingId != null">
+        #{meetingId,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingName != null">
+        #{meetingName,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingRecord != null">
+        #{meetingRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingTime != null">
+        #{meetingTime,jdbcType=DATE},
+      </if>
+      <if test="meetingPlace != null">
+        #{meetingPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingHost != null">
+        #{meetingHost,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingState != null">
+        #{meetingState,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbMeeting">
+    update cpb_meeting
+    <set>
+      <if test="meetingName != null">
+        meeting_name = #{meetingName,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingRecord != null">
+        meeting_record = #{meetingRecord,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingTime != null">
+        meeting_time = #{meetingTime,jdbcType=DATE},
+      </if>
+      <if test="meetingPlace != null">
+        meeting_place = #{meetingPlace,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingHost != null">
+        meeting_host = #{meetingHost,jdbcType=VARCHAR},
+      </if>
+      <if test="meetingState != null">
+        meeting_state = #{meetingState,jdbcType=INTEGER},
+      </if>
+    </set>
+    where meeting_id = #{meetingId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="apocalypse.cloudpartybuilding.pojo.CpbMeeting">
+    update cpb_meeting
+    set meeting_name = #{meetingName,jdbcType=VARCHAR},
+      meeting_record = #{meetingRecord,jdbcType=VARCHAR},
+      meeting_time = #{meetingTime,jdbcType=DATE},
+      meeting_place = #{meetingPlace,jdbcType=VARCHAR},
+      meeting_host = #{meetingHost,jdbcType=VARCHAR},
+      meeting_state = #{meetingState,jdbcType=INTEGER}
+    where meeting_id = #{meetingId,jdbcType=VARCHAR}
+  </update>
+</mapper>
