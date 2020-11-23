@@ -29,7 +29,6 @@ public class CpbNewsCommentContorller {
         if (resp > 0) {
             System.out.println("评论插入成功");
             return "评论插入成功";
-
         } else {
             System.out.println("评论插入失败");
             return "评论插入失败";

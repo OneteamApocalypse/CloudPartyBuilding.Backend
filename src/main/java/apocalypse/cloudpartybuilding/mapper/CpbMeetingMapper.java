@@ -13,9 +13,9 @@ public interface CpbMeetingMapper {
 
     CpbMeeting selectByPrimaryKey(String meetingId);
 
+    List<CpbMeeting> selectByAll();
+
     int updateByPrimaryKeySelective(CpbMeeting record);
 
     int updateByPrimaryKey(CpbMeeting record);
-
-    List<CpbMeeting> selectByAll();
 }

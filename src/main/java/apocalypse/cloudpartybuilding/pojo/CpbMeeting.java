@@ -9,21 +9,21 @@ public class CpbMeeting {
 
     private String meetingRecord;
 
-    private Date meetingTime;
+    private String meetingHost;
 
     private String meetingPlace;
 
-    private String meetingHost;
+    private Date meetingTime;
 
     private Integer meetingState;
 
-    public CpbMeeting(String meetingId, String meetingName, String meetingRecord, Date meetingTime, String meetingPlace, String meetingHost, Integer meetingState) {
+    public CpbMeeting(String meetingId, String meetingName, String meetingRecord, String meetingHost, String meetingPlace, Date meetingTime, Integer meetingState) {
         this.meetingId = meetingId;
         this.meetingName = meetingName;
         this.meetingRecord = meetingRecord;
-        this.meetingTime = meetingTime;
-        this.meetingPlace = meetingPlace;
         this.meetingHost = meetingHost;
+        this.meetingPlace = meetingPlace;
+        this.meetingTime = meetingTime;
         this.meetingState = meetingState;
     }
 
@@ -31,59 +31,59 @@ public class CpbMeeting {
         super();
     }
 
-    public String getmeetingId() {
+    public String getMeetingId() {
         return meetingId;
     }
 
-    public void setmeetingId(String meetingId) {
+    public void setMeetingId(String meetingId) {
         this.meetingId = meetingId == null ? null : meetingId.trim();
     }
 
-    public String getmeetingName() {
+    public String getMeetingName() {
         return meetingName;
     }
 
-    public void setmeetingName(String meetingName) {
+    public void setMeetingName(String meetingName) {
         this.meetingName = meetingName == null ? null : meetingName.trim();
     }
 
-    public String getmeetingRecord() {
+    public String getMeetingRecord() {
         return meetingRecord;
     }
 
-    public void setmeetingRecord(String meetingRecord) {
+    public void setMeetingRecord(String meetingRecord) {
         this.meetingRecord = meetingRecord == null ? null : meetingRecord.trim();
     }
 
-    public Date getmeetingTime() {
-        return meetingTime;
-    }
-
-    public void setmeetingTime(Date meetingTime) {
-        this.meetingTime = meetingTime;
-    }
-
-    public String getmeetingPlace() {
-        return meetingPlace;
-    }
-
-    public void setmeetingPlace(String meetingPlace) {
-        this.meetingPlace = meetingPlace == null ? null : meetingPlace.trim();
-    }
-
-    public String getmeetingHost() {
+    public String getMeetingHost() {
         return meetingHost;
     }
 
-    public void setmeetingHost(String meetingHost) {
+    public void setMeetingHost(String meetingHost) {
         this.meetingHost = meetingHost == null ? null : meetingHost.trim();
     }
 
-    public Integer getmeetingState() {
+    public String getMeetingPlace() {
+        return meetingPlace;
+    }
+
+    public void setMeetingPlace(String meetingPlace) {
+        this.meetingPlace = meetingPlace == null ? null : meetingPlace.trim();
+    }
+
+    public Date getMeetingTime() {
+        return meetingTime;
+    }
+
+    public void setMeetingTime(Date meetingTime) {
+        this.meetingTime = meetingTime;
+    }
+
+    public Integer getMeetingState() {
         return meetingState;
     }
 
-    public void setmeetingState(Integer meetingState) {
+    public void setMeetingState(Integer meetingState) {
         this.meetingState = meetingState;
     }
 }

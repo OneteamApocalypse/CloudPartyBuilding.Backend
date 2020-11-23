@@ -1,12 +1,14 @@
 package apocalypse.cloudpartybuilding.util;
 
+import com.rometools.rome.feed.synd.SyndContent;
+import com.rometools.rome.feed.synd.SyndEntry;
+import com.rometools.rome.feed.synd.SyndFeed;
+import com.rometools.rome.io.SyndFeedInput;
+import com.rometools.rome.io.XmlReader;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.rometools.rome.feed.synd.*;
-import com.rometools.rome.io.SyndFeedInput;
-import com.rometools.rome.io.XmlReader;
 
 public class PeopleNewRSSUtil {
         public static void main(String[] args) {
