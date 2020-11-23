@@ -6,6 +6,9 @@ import java.util.Date;
 
 @Data
 @AllArgsConstructor
+@Getter
+@Setter
+
 public class CpbUsers {
     private Integer userId;
 
