@@ -7,6 +7,8 @@ public class CpbWork {
 
     private String workName;
 
+    private String workDescription;
+
     private String workLocation;
 
     private Date workStartDate;
@@ -23,11 +25,10 @@ public class CpbWork {
 
     private Integer workStatus;
 
-    private String workDescription;
-
-    public CpbWork(String workId, String workName, String workLocation, Date workStartDate, Date workEndDate, Integer attendanceId, Integer personLeaveId, Integer numberOfWorkers, Integer usersId, Integer workStatus, String workDescription) {
+    public CpbWork(String workId, String workName, String workDescription, String workLocation, Date workStartDate, Date workEndDate, Integer attendanceId, Integer personLeaveId, Integer numberOfWorkers, Integer usersId, Integer workStatus) {
         this.workId = workId;
         this.workName = workName;
+        this.workDescription = workDescription;
         this.workLocation = workLocation;
         this.workStartDate = workStartDate;
         this.workEndDate = workEndDate;
@@ -36,7 +37,6 @@ public class CpbWork {
         this.numberOfWorkers = numberOfWorkers;
         this.usersId = usersId;
         this.workStatus = workStatus;
-        this.workDescription = workDescription;
     }
 
     public CpbWork() {
@@ -57,6 +57,14 @@ public class CpbWork {
 
     public void setWorkName(String workName) {
         this.workName = workName == null ? null : workName.trim();
+    }
+
+    public String getWorkDescription() {
+        return workDescription;
+    }
+
+    public void setWorkDescription(String workDescription) {
+        this.workDescription = workDescription == null ? null : workDescription.trim();
     }
 
     public String getWorkLocation() {
@@ -121,13 +129,5 @@ public class CpbWork {
 
     public void setWorkStatus(Integer workStatus) {
         this.workStatus = workStatus;
-    }
-
-    public String getWorkDescription() {
-        return workDescription;
-    }
-
-    public void setWorkDescription(String workDescription) {
-        this.workDescription = workDescription == null ? null : workDescription.trim();
     }
 }

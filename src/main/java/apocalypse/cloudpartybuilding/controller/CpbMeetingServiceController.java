@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController//返回的数据都是json
 @RequestMapping("/meeting")
-public class CpbMeetingServiceContorller {
+public class CpbMeetingServiceController {
     @Autowired
     CpbMeetingService cpbMeetingService;
     //分页查询所有会议

@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController//返回的数据都是json
 @RequestMapping("/newsReview")
-public class CpbNewsReviewContorller {
+public class CpbNewsReviewController {
     @Autowired
     private CpbNewsReviewService cpbNewsReviewService;
 //    public void test01(HttpServletRequest request, HttpServletResponse response,String path) throws ServletException, IOException {

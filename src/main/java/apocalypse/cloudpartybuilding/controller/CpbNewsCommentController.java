@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 @RestController//返回的数据都是json
 @RequestMapping("/newComment")
-public class CpbNewsCommentContorller {
+public class CpbNewsCommentController {
     @Autowired
     CpbNewsCommentService cpbNewsCommentService;
     //根据新闻id查询该新闻评论
