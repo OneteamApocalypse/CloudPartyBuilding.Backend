@@ -6,14 +6,9 @@ import apocalypse.cloudpartybuilding.util.CaptchaGenerator;
 import apocalypse.cloudpartybuilding.util.RespBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.*;
 
 import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.awt.*;
@@ -60,11 +55,11 @@ public class CpbUsersController {
         String usersPassword = jsonParam.get("password");
         String username = jsonParam.get("username");
         String captchaCode = jsonParam.get("captcha");
-        CpbUsers cpbUser = new CpbUsers(username,usersPassword,usersPhone);
+        CpbUsers cpbUser = new CpbUsers(username, usersPassword, usersPhone);
         log.warn(cpbUser.toString());
         try {
             int signup = cpbUsersService.signup(cpbUser);
-            if (signup==0){
+            if (signup == 0) {
                 if (!captchaCode.equals(captcha[0])) {
                     return new RespBean("error", "验证码错误");
                 } else {
@@ -99,8 +94,4 @@ public class CpbUsersController {
             return new RespBean("error", "登录失败");
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 71f766b0b4a489075b559b943c34d2eaef9e3803

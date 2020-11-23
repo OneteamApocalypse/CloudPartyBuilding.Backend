@@ -1,7 +1,6 @@
 package apocalypse.cloudpartybuilding.controller;
 
 import apocalypse.cloudpartybuilding.pojo.CpbMeeting;
-import apocalypse.cloudpartybuilding.pojo.CpbNews;
 import apocalypse.cloudpartybuilding.service.CpbMeetingService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -22,8 +21,9 @@ public class CpbMeetingServiceContorller {
         List<CpbMeeting> list = cpbMeetingService.selectByAll();
         PageInfo<CpbMeeting> pageInfo=new PageInfo(list);
         return pageInfo;
-
     }
-    @RequestMapping(value = "/")
-    public insertSelective(CpbMeeting record)
+    @RequestMapping(value = "/insertSelective",method = RequestMethod.POST)
+    public int insertSelective(@RequestBody CpbMeeting cpbMeeting){
+        return cpbMeetingService.insertSelective(cpbMeeting);
+    }
 }

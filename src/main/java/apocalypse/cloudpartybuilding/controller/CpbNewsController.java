@@ -2,9 +2,8 @@ package apocalypse.cloudpartybuilding.controller;
 
 
 import apocalypse.cloudpartybuilding.pojo.CpbNews;
-import apocalypse.cloudpartybuilding.pojo.CpbNewsComment;
-import apocalypse.cloudpartybuilding.service.CpbNewsCommentService;
 import apocalypse.cloudpartybuilding.service.CpbNewsService;
+import apocalypse.cloudpartybuilding.service.CpbUsersService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController//返回的数据都是json
-@RequestMapping("/new")
+@RequestMapping("/news")
 public class CpbNewsController {
     @Autowired
     CpbNewsService cpbNewsService;
@@ -34,6 +33,7 @@ public class CpbNewsController {
     //编辑新闻
     @RequestMapping(value = "/insertSelective",method = RequestMethod.POST)
     public int insertSelective(@RequestBody CpbNews cpbNews){
+        CpbUsersService cpbUsersService;
         return cpbNewsService.insertSelective(cpbNews);
     }
 

@@ -3,7 +3,6 @@ package apocalypse.cloudpartybuilding.service.implement;
 import apocalypse.cloudpartybuilding.mapper.CpbNewsReviewMapper;
 import apocalypse.cloudpartybuilding.pojo.CpbNewsReview;
 import apocalypse.cloudpartybuilding.service.CpbNewsReviewService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;

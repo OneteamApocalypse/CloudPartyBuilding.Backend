@@ -1,7 +1,6 @@
 package apocalypse.cloudpartybuilding.service.implement;
 
 import apocalypse.cloudpartybuilding.mapper.CpbNewsCommentMapper;
-import apocalypse.cloudpartybuilding.mapper.CpbNewsMapper;
 import apocalypse.cloudpartybuilding.pojo.CpbNewsComment;
 import apocalypse.cloudpartybuilding.service.CpbNewsCommentService;
 import org.springframework.stereotype.Service;
