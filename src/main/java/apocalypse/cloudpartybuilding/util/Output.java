@@ -1,4 +1,4 @@
-package apocalypse.cloudpartybuilding.utils;
+package apocalypse.cloudpartybuilding.util;
 
 
 import java.io.Serializable;

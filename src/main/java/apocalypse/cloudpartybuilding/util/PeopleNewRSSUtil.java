@@ -1,4 +1,4 @@
-package apocalypse.cloudpartybuilding.utils;
+package apocalypse.cloudpartybuilding.util;
 
 import java.net.URL;
 import java.util.ArrayList;

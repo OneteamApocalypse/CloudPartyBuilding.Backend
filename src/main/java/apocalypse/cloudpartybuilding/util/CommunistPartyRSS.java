@@ -1,4 +1,4 @@
-package apocalypse.cloudpartybuilding.utils;
+package apocalypse.cloudpartybuilding.util;
 
 
 import com.rometools.rome.feed.synd.SyndContent;

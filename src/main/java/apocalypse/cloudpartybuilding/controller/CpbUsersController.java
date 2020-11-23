@@ -2,8 +2,7 @@ package apocalypse.cloudpartybuilding.controller;
 
 import apocalypse.cloudpartybuilding.pojo.CpbUsers;
 import apocalypse.cloudpartybuilding.service.CpbUsersService;
-import apocalypse.cloudpartybuilding.utils.RespBean;
-import com.alibaba.druid.support.logging.Log;
+import apocalypse.cloudpartybuilding.util.RespBean;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

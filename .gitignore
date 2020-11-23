@@ -28,4 +28,4 @@ hs_err_pid*
 target
 src/main/resources/application.properties
 src/test/java
-
+src/main/resources/Config/generatorConfig.xml
