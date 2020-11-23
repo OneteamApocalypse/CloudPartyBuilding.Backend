@@ -1,5 +1,6 @@
 package apocalypse.cloudpartybuilding.pojo;
 
+import lombok.*;
 import java.util.Date;
 
 @Data
@@ -37,4 +38,10 @@ public class CpbUsers {
     private Integer wechatId;
 
     private Integer usersStatus;
+
+    public CpbUsers(String username, String usersPassword, Integer usersPhone) {
+        this.userName = username;
+        this.usersPassword = usersPassword;
+        this.usersPhone = usersPhone;
+    }
 }

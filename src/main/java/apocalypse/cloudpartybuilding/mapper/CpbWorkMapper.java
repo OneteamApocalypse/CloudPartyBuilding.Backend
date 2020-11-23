@@ -6,4 +6,6 @@ public interface CpbWorkMapper {
     int insert(CpbWork record);
 
     int insertSelective(CpbWork record);
+
+    CpbWork selectByPrimaryKey(String id);
 }

@@ -4,12 +4,12 @@ import apocalypse.cloudpartybuilding.mapper.CpbUsersMapper;
 import apocalypse.cloudpartybuilding.pojo.CpbUsers;
 import apocalypse.cloudpartybuilding.service.CpbUsersService;
 import cn.hutool.crypto.SecureUtil;
-import com.alibaba.druid.support.logging.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+
 @Slf4j
 @Service
 public class CpbUsersServiceImp implements CpbUsersService {

@@ -60,11 +60,11 @@ public class CpbUsersController {
         String usersPassword = jsonParam.get("password");
         String username = jsonParam.get("username");
         String captchaCode = jsonParam.get("captcha");
-        CpbUsers cpbUser = new CpbUsers(username,usersPassword,usersPhone);
+        CpbUsers cpbUser = new CpbUsers(username, usersPassword, usersPhone);
         log.warn(cpbUser.toString());
         try {
             int signup = cpbUsersService.signup(cpbUser);
-            if (signup==0){
+            if (signup == 0) {
                 if (!captchaCode.equals(captcha[0])) {
                     return new RespBean("error", "验证码错误");
                 } else {
@@ -99,8 +99,4 @@ public class CpbUsersController {
             return new RespBean("error", "登录失败");
         }
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 71f766b0b4a489075b559b943c34d2eaef9e3803

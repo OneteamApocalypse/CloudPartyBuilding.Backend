@@ -3,10 +3,12 @@ package apocalypse.cloudpartybuilding.service.implement;
 import apocalypse.cloudpartybuilding.mapper.CpbMeetingMapper;
 import apocalypse.cloudpartybuilding.pojo.CpbMeeting;
 import apocalypse.cloudpartybuilding.service.CpbMeetingService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
 
+@Service
 public class CpbMeetingServiceImpl implements CpbMeetingService {
     @Resource
     private CpbMeetingMapper cpbMeetingMapper;
