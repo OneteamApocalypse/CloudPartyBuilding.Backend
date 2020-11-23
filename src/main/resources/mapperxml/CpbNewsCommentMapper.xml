@@ -8,10 +8,11 @@
       <arg column="content" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="date" javaType="java.util.Date" jdbcType="DATE" />
       <arg column="news_id" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="last_comment_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
   <sql id="Base_Column_List">
-    id, user_id, content, date, news_id
+    id, user_id, content, date, news_id, last_comment_id
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -19,15 +20,23 @@
     from cpb_news_comment
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectByNewsId" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cpb_news_comment
+    where news_id=#{news_id，jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cpb_news_comment
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNewsComment">
     insert into cpb_news_comment (id, user_id, content, 
-      date, news_id)
+      date, news_id, last_comment_id
+      )
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
-      #{date,jdbcType=DATE}, #{newsId,jdbcType=VARCHAR})
+      #{date,jdbcType=DATE}, #{newsId,jdbcType=VARCHAR}, #{lastCommentId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNewsComment">
     insert into cpb_news_comment
@@ -47,6 +56,9 @@
       <if test="newsId != null">
         news_id,
       </if>
+      <if test="lastCommentId != null">
+        last_comment_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -59,10 +71,13 @@
         #{content,jdbcType=VARCHAR},
       </if>
       <if test="date != null">
-        #{date,jdbcType=DATE},
+          date(now()),
       </if>
       <if test="newsId != null">
         #{newsId,jdbcType=VARCHAR},
+      </if>
+      <if test="lastCommentId != null">
+        #{lastCommentId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -81,6 +96,9 @@
       <if test="newsId != null">
         news_id = #{newsId,jdbcType=VARCHAR},
       </if>
+      <if test="lastCommentId != null">
+        last_comment_id = #{lastCommentId,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -89,7 +107,8 @@
     set user_id = #{userId,jdbcType=INTEGER},
       content = #{content,jdbcType=VARCHAR},
       date = #{date,jdbcType=DATE},
-      news_id = #{newsId,jdbcType=VARCHAR}
+      news_id = #{newsId,jdbcType=VARCHAR},
+      last_comment_id = #{lastCommentId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

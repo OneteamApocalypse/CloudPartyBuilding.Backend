@@ -13,12 +13,15 @@ public class CpbNewsComment {
 
     private String newsId;
 
-    public CpbNewsComment(Integer id, Integer userId, String content, Date date, String newsId) {
+    private Integer lastCommentId;
+
+    public CpbNewsComment(Integer id, Integer userId, String content, Date date, String newsId, Integer lastCommentId) {
         this.id = id;
         this.userId = userId;
         this.content = content;
         this.date = date;
         this.newsId = newsId;
+        this.lastCommentId = lastCommentId;
     }
 
     public CpbNewsComment() {
@@ -63,5 +66,13 @@ public class CpbNewsComment {
 
     public void setNewsId(String newsId) {
         this.newsId = newsId == null ? null : newsId.trim();
+    }
+
+    public Integer getLastCommentId() {
+        return lastCommentId;
+    }
+
+    public void setLastCommentId(Integer lastCommentId) {
+        this.lastCommentId = lastCommentId;
     }
 }

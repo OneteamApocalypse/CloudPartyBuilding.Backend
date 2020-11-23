@@ -1,30 +1,23 @@
-package apocalypse.cloudpartybuilding.util;
+package apocalypse.cloudpartybuilding.utils;
 
 import java.util.List;
 import java.util.Map;
 
-/**
- * @Author skyrocketing Hong
- * @Date 2020-11-18 018 10:23:47
- * @Version 1.0
- */
 public class RespBean {
-    public static int defaultSize = 5;
     private String status;
     private String msg;
     private int totalCount;
-    private List<Map<String, Object>> list;
-
+    private List<Map<String,Object>> list;
+    public static int defaultSize = 5;
     public RespBean() {
         super();
     }
-
-    public RespBean(String status, String msg) {
+    public RespBean(String status, String msg) { //增删改统一返回对象初始化
         super();
         this.status = status;
         this.msg = msg;
     }
-
+    //列表分页作为返回的数据
     public RespBean(String status, String msg, int totalCount, List<Map<String, Object>> list) {
         super();
         this.status = status;
@@ -32,39 +25,30 @@ public class RespBean {
         this.totalCount = totalCount;
         this.list = list;
     }
-
     public String getStatus() {
         return status;
     }
-
     public void setStatus(String status) {
         this.status = status;
     }
-
     public String getMsg() {
         return msg;
     }
-
     public void setMsg(String msg) {
         this.msg = msg;
     }
-
     public int getTotalCount() {
         return totalCount;
     }
-
     public void setTotalCount(int totalCount) {
         this.totalCount = totalCount;
     }
-
     public List<Map<String, Object>> getList() {
         return list;
     }
-
     public void setList(List<Map<String, Object>> list) {
         this.list = list;
     }
-
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -75,7 +59,6 @@ public class RespBean {
         result = prime * result + totalCount;
         return result;
     }
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -104,7 +87,6 @@ public class RespBean {
             return false;
         return true;
     }
-
     @Override
     public String toString() {
         return "RespBean [status=" + status + ", msg=" + msg + ", totalCount=" + totalCount + ", list=" + list + "]";

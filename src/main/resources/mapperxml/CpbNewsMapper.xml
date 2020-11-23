@@ -24,6 +24,12 @@
     from cpb_news
     where id = #{id,jdbcType=VARCHAR}
   </select>
+
+  <select id="selectByAll" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cpb_news
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     delete from cpb_news
     where id = #{id,jdbcType=VARCHAR}
@@ -33,7 +39,7 @@
       author, publisher, date, 
       content, type, review_id, 
       status)
-    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR}, 
+    values (NewsID(), #{name,jdbcType=VARCHAR}, #{subtitle,jdbcType=VARCHAR},
       #{author,jdbcType=INTEGER}, #{publisher,jdbcType=INTEGER}, #{date,jdbcType=DATE}, 
       #{content,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{reviewId,jdbcType=INTEGER}, 
       #{status,jdbcType=INTEGER})
@@ -41,9 +47,7 @@
   <insert id="insertSelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNews">
     insert into cpb_news
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
         id,
-      </if>
       <if test="name != null">
         name,
       </if>
@@ -73,9 +77,7 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=VARCHAR},
-      </if>
+        NewsID(),
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
@@ -121,7 +123,7 @@
         publisher = #{publisher,jdbcType=INTEGER},
       </if>
       <if test="date != null">
-        date = #{date,jdbcType=DATE},
+        date = date(now()),
       </if>
       <if test="content != null">
         content = #{content,jdbcType=VARCHAR},

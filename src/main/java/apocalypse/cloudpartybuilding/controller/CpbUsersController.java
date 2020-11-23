@@ -1,9 +1,9 @@
 package apocalypse.cloudpartybuilding.controller;
 
-
 import apocalypse.cloudpartybuilding.pojo.CpbUsers;
 import apocalypse.cloudpartybuilding.service.CpbUsersService;
-import apocalypse.cloudpartybuilding.util.RespBean;
+import apocalypse.cloudpartybuilding.utils.RespBean;
+import com.alibaba.druid.support.logging.Log;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +24,11 @@ public class CpbUsersController {
     CpbUsersService cpbUsersService;
 
 
-    @RequestMapping(value ="/selectid",method = RequestMethod.GET)
+    @RequestMapping(value = "/selectid", method = RequestMethod.GET)
     public CpbUsers selectidUser() {
         return cpbUsersService.selectByPrimaryKey(1);
     }
+
     //验证码
     @GetMapping("/captcha")
     public void DefaultCaptcha(HttpServletRequest httpServletRequest,
@@ -41,16 +42,16 @@ public class CpbUsersController {
         Integer usersPhone = Integer.parseInt(jsonParam.get("phone"));
         String usersPassword = jsonParam.get("password");
         String username = jsonParam.get("username");
-        CpbUsers cpbUser = new CpbUsers(username,usersPassword,usersPhone);
+        CpbUsers cpbUser = new CpbUsers(username, usersPassword, usersPhone);
         log.warn(cpbUser.toString());
         try {
             int signup = cpbUsersService.signup(cpbUser);
-            if(signup==0){
+            if (signup == 0) {
                 return new RespBean("error", "注册失败");
-            }else{
+            } else {
                 return new RespBean("success", "注册成功");
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             return new RespBean("error", "事务错误，账号存在");
         }
 
@@ -59,7 +60,7 @@ public class CpbUsersController {
 
     //登录
     @PostMapping(value = "/signin", produces = "application/json;charset=utf-8;")
-    public RespBean SingIn (@RequestBody Map<String, String> jsonParam, HttpSession session) {
+    public RespBean SingIn(@RequestBody Map<String, String> jsonParam, HttpSession session) {
         String usersPhone = jsonParam.get("phone");
         String usersPassword = jsonParam.get("password");
         CpbUsers cpbUser = cpbUsersService.signin(usersPhone, usersPassword);
@@ -73,6 +74,4 @@ public class CpbUsersController {
             return new RespBean("error", "登录失败");
         }
     }
-
-
 }
