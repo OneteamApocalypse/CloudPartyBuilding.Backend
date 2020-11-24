@@ -12,4 +12,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface CpbWorkService {
     CpbWork selectByPrimaryKey(String id);
+
+    int insert(CpbWork cpbWork);
 }

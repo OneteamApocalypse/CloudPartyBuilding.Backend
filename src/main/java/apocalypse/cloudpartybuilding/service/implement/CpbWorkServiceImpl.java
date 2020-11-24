@@ -24,4 +24,9 @@ public class CpbWorkServiceImpl implements CpbWorkService {
     public CpbWork selectByPrimaryKey(String id) {
         return cpbWorkMapper.selectByPrimaryKey(id);
     }
+
+    @Override
+    public int insert(CpbWork cpbWork) {
+        return cpbWorkMapper.insert(cpbWork);
+    }
 }
