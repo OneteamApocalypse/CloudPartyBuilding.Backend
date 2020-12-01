@@ -1,8 +1,8 @@
 package apocalypse.cloudpartybuilding.service;
 
-
 import apocalypse.cloudpartybuilding.pojo.CpbUsers;
-import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CpbUsersService {
     CpbUsers selectByPrimaryKey(Integer userId);
@@ -10,6 +10,8 @@ public interface CpbUsersService {
     CpbUsers signin(String usersPhone, String usersPassword);
     //注册
     int signup(CpbUsers cpbUsers);
+
+    List<CpbUsers> selectByAll();
     //判断电话号码是否存在
 //    int countuserphone(String phone);
 }

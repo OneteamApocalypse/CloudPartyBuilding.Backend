@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="apocalypse.cloudpartybuilding.mapper.CpbReportMapper">
+  <resultMap id="BaseResultMap" type="apocalypse.cloudpartybuilding.pojo.CpbReport">
+    <constructor>
+      <idArg column="report_id" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="report_name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="report_content" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="report_date" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="report_ip" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    report_id, report_name, report_content, report_date, report_ip
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from cpb_report
+    where report_id = #{reportId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from cpb_report
+    where report_id = #{reportId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="apocalypse.cloudpartybuilding.pojo.CpbReport">
+    insert into cpb_report (report_id, report_name, report_content, report_ip)
+    values (#{reportId,jdbcType=INTEGER}, #{reportName,jdbcType=VARCHAR}, #{reportContent,jdbcType=VARCHAR}, #{reportIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbReport">
+    insert into cpb_report
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="reportId != null">
+        report_id,
+      </if>
+      <if test="reportName != null">
+        report_name,
+      </if>
+      <if test="reportContent != null">
+        report_content,
+      </if>
+      <if test="reportIp != null">
+        report_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="reportId != null">
+        #{reportId,jdbcType=INTEGER},
+      </if>
+      <if test="reportName != null">
+        #{reportName,jdbcType=VARCHAR},
+      </if>
+      <if test="reportContent != null">
+        #{reportContent,jdbcType=VARCHAR},
+      </if>
+      <if test="reportIp != null">
+        #{reportIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbReport">
+    update cpb_report
+    <set>
+      <if test="reportName != null">
+        report_name = #{reportName,jdbcType=VARCHAR},
+      </if>
+      <if test="reportContent != null">
+        report_content = #{reportContent,jdbcType=VARCHAR},
+      </if>
+      <if test="reportDate != null">
+        report_date = #{reportDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="reportIp != null">
+        report_ip = #{reportIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where report_id = #{reportId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="apocalypse.cloudpartybuilding.pojo.CpbReport">
+    update cpb_report
+    set report_name = #{reportName,jdbcType=VARCHAR},
+      report_content = #{reportContent,jdbcType=VARCHAR},
+      report_date = #{reportDate,jdbcType=TIMESTAMP},
+      report_ip = #{reportIp,jdbcType=VARCHAR}
+    where report_id = #{reportId,jdbcType=INTEGER}
+  </update>
+</mapper>

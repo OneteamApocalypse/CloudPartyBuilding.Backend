@@ -1,7 +1,9 @@
 package apocalypse.cloudpartybuilding.mapper;
 
 import apocalypse.cloudpartybuilding.pojo.CpbNewsMultimedia;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface CpbNewsMultimediaMapper {
     int deleteByPrimaryKey(Integer id);
 

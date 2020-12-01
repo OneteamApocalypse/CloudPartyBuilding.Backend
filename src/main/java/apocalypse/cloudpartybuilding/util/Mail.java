@@ -3,6 +3,7 @@ package apocalypse.cloudpartybuilding.util;
 import lombok.Data;
 
 @Data
+
 public class Mail {
 
     // 发送给谁
