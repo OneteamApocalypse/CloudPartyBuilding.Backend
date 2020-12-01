@@ -11,9 +11,9 @@ public interface CpbNewsReviewMapper {
 
     int updateStatusByPrimaryKeySelective(Integer id);
 
-    int insert(CpbNewsReview record);
-
-    int insertSelective(CpbNewsReview record);
+//    int insert(CpbNewsReview record);
+//
+//    int insertSelective(CpbNewsReview record);
 
     CpbNewsReview selectByPrimaryKey(Integer id);
 
@@ -24,4 +24,5 @@ public interface CpbNewsReviewMapper {
     CpbNewsReview selectByNewsid(String news_id);
 
     List<CpbNewsReview> selectUnreviewedAll();
+    List<CpbNewsReview> newsReviewStatusSelectAll();
 }

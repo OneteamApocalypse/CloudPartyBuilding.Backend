@@ -10,4 +10,5 @@ public interface CpbNewsReviewService {
     public CpbNewsReview selectByNewsid(String news_id);
     public List<CpbNewsReview> selectUnreviewedAll();
     public int updateStatusByPrimaryKeySelective(Integer id);
+    public List<CpbNewsReview> newsReviewStatusSelectAll();
 }

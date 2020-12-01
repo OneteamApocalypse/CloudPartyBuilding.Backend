@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Author skyrocketing Hong
@@ -26,7 +27,18 @@ public class CpbWorkServiceImpl implements CpbWorkService {
     }
 
     @Override
+    public int insertSelective(CpbWork record) {
+        return cpbWorkMapper.insertSelective(record);
+    }
+
+    @Override
     public int insert(CpbWork cpbWork) {
         return cpbWorkMapper.insert(cpbWork);
     }
+
+    @Override
+    public List<CpbWork> selectByAll() {
+        return cpbWorkMapper.selectByAll();
+    }
+
 }

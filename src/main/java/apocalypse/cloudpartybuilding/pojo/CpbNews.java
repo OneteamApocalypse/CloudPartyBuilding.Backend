@@ -1,9 +1,6 @@
 package apocalypse.cloudpartybuilding.pojo;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
@@ -11,6 +8,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
+@NoArgsConstructor
 public class CpbNews {
     private String id;
 
@@ -31,4 +29,5 @@ public class CpbNews {
     private Integer reviewId;
 
     private Integer status;
+
 }

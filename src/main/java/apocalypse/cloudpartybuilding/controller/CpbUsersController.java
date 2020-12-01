@@ -35,8 +35,8 @@ public class CpbUsersController {
 
 
     @RequestMapping(value = "/selectid", method = RequestMethod.GET)
-    public CpbUsers selectidUser() {
-        return cpbUsersService.selectByPrimaryKey(1);
+    public CpbUsers selectidUser(@RequestParam("id")int id) {
+        return cpbUsersService.selectByPrimaryKey(id);
     }
 
     //验证码
@@ -54,17 +54,15 @@ public class CpbUsersController {
         Integer usersPhone = Integer.parseInt(jsonParam.get("phone"));
         String usersPassword = jsonParam.get("password");
         String username = jsonParam.get("username");
-        String captchaCode = jsonParam.get("captcha");
+        //String captchaCode = jsonParam.get("captcha");
         CpbUsers cpbUser = new CpbUsers(username, usersPassword, usersPhone);
         log.warn(cpbUser.toString());
         try {
             int signup = cpbUsersService.signup(cpbUser);
             if (signup == 0) {
-                if (!captchaCode.equals(captcha[0])) {
-                    return new RespBean("error", "验证码错误");
-                } else {
+
                     return new RespBean("error", "注册失败");
-                }
+
             } else {
                 return new RespBean("success", "注册成功");
             }
@@ -78,20 +76,15 @@ public class CpbUsersController {
     public RespBean SingIn(@RequestBody Map<String, String> jsonParam, HttpSession session) {
         String usersPhone = jsonParam.get("phone");
         String usersPassword = jsonParam.get("password");
-        String captchaCode = jsonParam.get("captcha");
+       // String captchaCode = jsonParam.get("captcha");
         CpbUsers cpbUser = cpbUsersService.signin(usersPhone, usersPassword);
-        if (cpbUser != null) {
-            if (!captchaCode.equals(captcha[0])) {
-                return new RespBean("error", "验证码错误");
-            } else {
-                session.setAttribute("loginUser", cpbUser.getUserName());
-                session.setAttribute("loginUserId", cpbUser.getUserId());
-                //session过期时间设置为7200秒 即两小时
-                session.setMaxInactiveInterval(60 * 60 * 2);
-                return new RespBean("success", "登录成功");
-            }
-        } else {
-            return new RespBean("error", "登录失败");
-        }
+
+
+            session.setAttribute("loginUser", cpbUser.getUserName());
+            session.setAttribute("loginUserId", cpbUser.getUserId());
+            //session过期时间设置为7200秒 即两小时
+            session.setMaxInactiveInterval(60 * 60 * 2);
+            return new RespBean("success", "登录成功");
+
     }
 }

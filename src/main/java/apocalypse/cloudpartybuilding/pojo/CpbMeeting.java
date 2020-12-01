@@ -1,7 +1,13 @@
 package apocalypse.cloudpartybuilding.pojo;
 
-import java.util.Date;
+import lombok.*;
 
+import java.util.Date;
+@Data
+@AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class CpbMeeting {
     private String meetingId;
 
@@ -16,20 +22,6 @@ public class CpbMeeting {
     private Date meetingTime;
 
     private Integer meetingState;
-
-    public CpbMeeting(String meetingId, String meetingName, String meetingRecord, String meetingHost, String meetingPlace, Date meetingTime, Integer meetingState) {
-        this.meetingId = meetingId;
-        this.meetingName = meetingName;
-        this.meetingRecord = meetingRecord;
-        this.meetingHost = meetingHost;
-        this.meetingPlace = meetingPlace;
-        this.meetingTime = meetingTime;
-        this.meetingState = meetingState;
-    }
-
-    public CpbMeeting() {
-        super();
-    }
 
     public String getMeetingId() {
         return meetingId;

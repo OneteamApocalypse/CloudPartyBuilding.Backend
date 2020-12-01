@@ -20,4 +20,5 @@ public interface CpbNewsMapper {
     int updateByPrimaryKeySelective(CpbNews record);
 
     int updateByPrimaryKey(CpbNews record);
+
 }

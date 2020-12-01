@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -39,8 +40,14 @@ public class CpbUsersServiceImp implements CpbUsersService {
         }else{
             //不存在重复电话号码 //可注册
             log.warn("电话号码不存在了");
+            cpbUsers.setUsersPassword(userPasswordEncrypt);
             return cpbUsersMapper.signup(cpbUsers);
         }
+    }
+
+    @Override
+    public List<CpbUsers> selectByAll() {
+        return cpbUsersMapper.selectByAll();
     }
 
 

@@ -1,9 +1,7 @@
 package apocalypse.cloudpartybuilding.pojo;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
@@ -23,4 +21,7 @@ public class CpbNewsComment {
     private String newsId;
 
     private Integer lastCommentId;
+
+    public CpbNewsComment() {
+    }
 }

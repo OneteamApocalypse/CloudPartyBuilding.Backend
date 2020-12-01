@@ -24,7 +24,7 @@
     select
     <include refid="Base_Column_List" />
     from cpb_news_comment
-    where news_id=#{news_id，jdbcType=VARCHAR}
+    where news_id=#{news_id,jdbcType=VARCHAR}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from cpb_news_comment
@@ -41,18 +41,15 @@
   <insert id="insertSelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNewsComment">
     insert into cpb_news_comment
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="userId != null">
         user_id,
       </if>
       <if test="content != null">
         content,
       </if>
-      <if test="date != null">
+
         date,
-      </if>
+
       <if test="newsId != null">
         news_id,
       </if>
@@ -61,18 +58,16 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
+
       <if test="userId != null">
         #{userId,jdbcType=INTEGER},
       </if>
       <if test="content != null">
         #{content,jdbcType=VARCHAR},
       </if>
-      <if test="date != null">
+
           date(now()),
-      </if>
+
       <if test="newsId != null">
         #{newsId,jdbcType=VARCHAR},
       </if>
@@ -84,9 +79,6 @@
   <update id="updateByPrimaryKeySelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNewsComment">
     update cpb_news_comment
     <set>
-      <if test="userId != null">
-        user_id = #{userId,jdbcType=INTEGER},
-      </if>
       <if test="content != null">
         content = #{content,jdbcType=VARCHAR},
       </if>

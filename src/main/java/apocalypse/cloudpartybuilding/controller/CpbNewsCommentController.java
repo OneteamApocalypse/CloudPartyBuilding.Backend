@@ -1,7 +1,9 @@
 package apocalypse.cloudpartybuilding.controller;
 
 import apocalypse.cloudpartybuilding.pojo.CpbNewsComment;
+import apocalypse.cloudpartybuilding.pojo.CpbUsers;
 import apocalypse.cloudpartybuilding.service.CpbNewsCommentService;
+import apocalypse.cloudpartybuilding.service.CpbUsersService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +24,10 @@ public class CpbNewsCommentController {
         PageInfo<CpbNewsComment> pageInfo=new PageInfo(list);
         return pageInfo;
     }
+
     //插入新闻评论
     @RequestMapping(value = "insertSelective",method = RequestMethod.POST)
-    public String insertSelective(@RequestBody CpbNewsComment cpbNewsComment) {
-        int resp = cpbNewsCommentService.insertSelective(cpbNewsComment);
-        if (resp > 0) {
-            System.out.println("评论插入成功");
-            return "评论插入成功";
-        } else {
-            System.out.println("评论插入失败");
-            return "评论插入失败";
-        }
+    public int insertSelective(@RequestBody CpbNewsComment cpbNewsComment) {
+        return cpbNewsCommentService.insertSelective(cpbNewsComment);
     }
 }

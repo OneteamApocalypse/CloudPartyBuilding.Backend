@@ -7,7 +7,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-
+@NoArgsConstructor
 public class CpbUsers {
     private Integer userId;
 
@@ -44,4 +44,6 @@ public class CpbUsers {
         this.usersPassword = usersPassword;
         this.usersPhone = usersPhone;
     }
+
+
 }

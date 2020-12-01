@@ -12,6 +12,27 @@
       <arg column="news_review_result" javaType="java.lang.Integer" jdbcType="INTEGER" />
     </constructor>
   </resultMap>
+    <resultMap id="queryForListMap" type="apocalypse.cloudpartybuilding.pojo.CpbNewsReview">
+        <id column="id" javaType="java.lang.Integer" property="id" />
+        <result column="user_id" javaType="java.lang.Integer" property="userId" />
+        <result column="news_id" javaType="java.lang.String" property="newsId" />
+        <result column="news_review_status" javaType="java.lang.Integer" property="newsReviewStatus" />
+        <result column="news_review_date" javaType="java.util.Date" property="newsReviewDate" />
+        <result column="news_review_directions" javaType="java.lang.String" property="newsReviewDirections" />
+        <result column="news_review_result" javaType="java.lang.Integer" property="newsReviewResult" />
+        <association property="cpbNews" javaType="apocalypse.cloudpartybuilding.pojo.CpbNews">
+            <id column="id" javaType="java.lang.String" property="id" />
+            <result column="name" javaType="java.lang.String" property="name" />
+            <result column="subtitle" javaType="java.lang.String" property="subtitle" />
+            <result column="author" javaType="java.lang.Integer" property="author" />
+            <result column="publisher" javaType="java.lang.Integer" property="publisher" />
+            <result column="date" javaType="java.util.Date" property="date" />
+            <result column="content" javaType="java.lang.String" property="content" />
+            <result column="type" javaType="java.lang.Integer" property="type" />
+            <result column="review_id" javaType="java.lang.Integer" property="reviewId" />
+            <result column="status" javaType="java.lang.Integer" property="status" />
+        </association>
+    </resultMap>
   <sql id="Base_Column_List">
     id, user_id, news_id, news_review_status, news_review_date, news_review_directions, 
     news_review_result
@@ -22,11 +43,18 @@
     from cpb_news_review
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <select id="selectUnreviewedAll" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectUnreviewedAll" parameterType="java.lang.Integer" resultMap="queryForListMap">
     select
-    <include refid="Base_Column_List" />
-    from cpb_news_review
-    where  news_review_status = 1
+    cpb_news_review.id, cpb_news_review.user_id, cpb_news_review.news_id, cpb_news_review.news_review_status, cpb_news_review.news_review_date, cpb_news_review.news_review_directions,cpb_news.name,cpb_news.author,
+    cpb_news.content,cpb_news.date,cpb_news.id,cpb_news.publisher,cpb_news.review_id,cpb_news.status,cpb_news.subtitle,cpb_news.type
+    from cpb_news_review left join cpb_news on cpb_news_review.news_id = cpb_news.id
+    where  news_review_status = 1 ORDER BY cpb_news.date desc
+  </select>
+  <select id="newsReviewStatusSelectAll" parameterType="java.lang.Integer" resultMap="queryForListMap">
+    select
+    cpb_news_review.id, cpb_news_review.user_id, cpb_news_review.news_id, cpb_news_review.news_review_status, cpb_news_review.news_review_date, cpb_news_review.news_review_directions, cpb_news_review.news_review_result,cpb_news.name,cpb_news.author,
+    cpb_news.content,cpb_news.date,cpb_news.id,cpb_news.publisher,cpb_news.review_id,cpb_news.status,cpb_news.subtitle,cpb_news.type
+    from cpb_news_review left join cpb_news on cpb_news_review.news_id = cpb_news.id ORDER BY cpb_news.date desc
   </select>
   <select id="selectByNewsid" parameterType="java.lang.String" resultMap="BaseResultMap">
     select
@@ -38,77 +66,72 @@
     delete from cpb_news_review
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNewsReview">
-    insert into cpb_news_review (id, user_id, news_id, 
-      news_review_status, news_review_date, news_review_directions, 
-      news_review_result)
-    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{newsId,jdbcType=VARCHAR}, 
-      #{newsReviewStatus,jdbcType=INTEGER}, #{newsReviewDate,jdbcType=DATE}, #{newsReviewDirections,jdbcType=VARCHAR}, 
-      #{newsReviewResult,jdbcType=INTEGER})
-  </insert>
-  <insert id="insertSelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNewsReview">
-    insert into cpb_news_review
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="userId != null">
-        user_id,
-      </if>
-      <if test="newsId != null">
-        news_id,
-      </if>
-      <if test="newsReviewStatus != null">
-        news_review_status,
-      </if>
-      <if test="newsReviewDate != null">
-        news_review_date,
-      </if>
-      <if test="newsReviewDirections != null">
-        news_review_directions,
-      </if>
-      <if test="newsReviewResult != null">
-        news_review_result,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="userId != null">
-        #{userId,jdbcType=INTEGER},
-      </if>
-      <if test="newsId != null">
-        #{newsId,jdbcType=VARCHAR},
-      </if>
-      <if test="newsReviewStatus != null">
-        #{newsReviewStatus,jdbcType=INTEGER},
-      </if>
-      <if test="newsReviewDate != null">
-        #{newsReviewDate,jdbcType=DATE},
-      </if>
-      <if test="newsReviewDirections != null">
-        #{newsReviewDirections,jdbcType=VARCHAR},
-      </if>
-      <if test="newsReviewResult != null">
-        #{newsReviewResult,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
+<!--  <insert id="insert" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNewsReview">-->
+<!--    insert into cpb_news_review (id, user_id, news_id, -->
+<!--      news_review_status, news_review_date, news_review_directions, -->
+<!--      news_review_result)-->
+<!--    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{newsId,jdbcType=VARCHAR}, -->
+<!--      #{newsReviewStatus,jdbcType=INTEGER}, #{newsReviewDate,jdbcType=DATE}, #{newsReviewDirections,jdbcType=VARCHAR}, -->
+<!--      #{newsReviewResult,jdbcType=INTEGER})-->
+<!--  </insert>-->
+<!--  <insert id="insertSelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNewsReview">-->
+<!--    insert into cpb_news_review-->
+<!--    <trim prefix="(" suffix=")" suffixOverrides=",">-->
+<!--      <if test="id != null">-->
+<!--        id,-->
+<!--      </if>-->
+<!--      <if test="userId != null">-->
+<!--        user_id,-->
+<!--      </if>-->
+<!--      <if test="newsId != null">-->
+<!--        news_id,-->
+<!--      </if>-->
+<!--      <if test="newsReviewStatus != null">-->
+<!--        news_review_status,-->
+<!--      </if>-->
+<!--      <if test="newsReviewDate != null">-->
+<!--        news_review_date,-->
+<!--      </if>-->
+<!--      <if test="newsReviewDirections != null">-->
+<!--        news_review_directions,-->
+<!--      </if>-->
+<!--      <if test="newsReviewResult != null">-->
+<!--        news_review_result,-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--    <trim prefix="values (" suffix=")" suffixOverrides=",">-->
+<!--      <if test="id != null">-->
+<!--        #{id,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="userId != null">-->
+<!--        #{userId,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="newsId != null">-->
+<!--        #{newsId,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="newsReviewStatus != null">-->
+<!--        #{newsReviewStatus,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--      <if test="newsReviewDate != null">-->
+<!--        #{newsReviewDate,jdbcType=DATE},-->
+<!--      </if>-->
+<!--      <if test="newsReviewDirections != null">-->
+<!--        #{newsReviewDirections,jdbcType=VARCHAR},-->
+<!--      </if>-->
+<!--      <if test="newsReviewResult != null">-->
+<!--        #{newsReviewResult,jdbcType=INTEGER},-->
+<!--      </if>-->
+<!--    </trim>-->
+<!--  </insert>-->
   <update id="updateByPrimaryKeySelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNewsReview">
     update cpb_news_review
     <set>
       <if test="userId != null">
         user_id = #{userId,jdbcType=INTEGER},
       </if>
-      <if test="newsId != null">
-        news_id = #{newsId,jdbcType=VARCHAR},
-      </if>
-      <if test="newsReviewStatus != null">
-        news_review_status = #{newsReviewStatus,jdbcType=INTEGER},
-      </if>
+      news_review_status = 3,
       <if test="newsReviewDate != null">
-        news_review_date = #{newsReviewDate,jdbcType=DATE},
+        news_review_date = date(now()),
       </if>
       <if test="newsReviewDirections != null">
         news_review_directions = #{newsReviewDirections,jdbcType=VARCHAR},
@@ -117,13 +140,13 @@
         news_review_result = #{newsReviewResult,jdbcType=INTEGER},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where news_id = #{newsId,jdbcType=VARCHAR}
   </update>
   <update id="updateStatusByPrimaryKeySelective" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNewsReview">
     update cpb_news_review
     set
         news_review_status = 2
-    where id = #{id,jdbcType=INTEGER}
+    where news_id = #{newsId,jdbcType=VARCHAR}
   </update>
   <update id="updateByPrimaryKey" parameterType="apocalypse.cloudpartybuilding.pojo.CpbNewsReview">
     update cpb_news_review

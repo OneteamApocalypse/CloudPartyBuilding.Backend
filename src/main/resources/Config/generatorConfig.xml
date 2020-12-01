@@ -56,7 +56,7 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 
-        <table tableName="cpb_work"
+        <table tableName="report"
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"

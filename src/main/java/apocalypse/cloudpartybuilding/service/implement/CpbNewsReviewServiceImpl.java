@@ -14,7 +14,7 @@ public class CpbNewsReviewServiceImpl implements CpbNewsReviewService {
     private CpbNewsReviewMapper cpbNewsReviewMapper;
     @Override
     public int updateByPrimaryKeySelective(CpbNewsReview record) {
-        return cpbNewsReviewMapper.insertSelective(record);
+        return cpbNewsReviewMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
@@ -35,5 +35,10 @@ public class CpbNewsReviewServiceImpl implements CpbNewsReviewService {
     @Override
     public int updateStatusByPrimaryKeySelective(Integer id) {
         return cpbNewsReviewMapper.updateStatusByPrimaryKeySelective(id);
+    }
+
+    @Override
+    public List<CpbNewsReview> newsReviewStatusSelectAll() {
+        return cpbNewsReviewMapper.newsReviewStatusSelectAll();
     }
 }
