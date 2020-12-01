@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 //package apocalypse.cloudpartybuilding.config;
 //
 //
@@ -16,19 +15,6 @@
 //import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 //import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 //
-=======
-package apocalypse.cloudpartybuilding.config;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.csrf.CsrfFilter;
-import org.springframework.web.filter.CharacterEncodingFilter;
-
->>>>>>> cacdb2319f2f90261ff5ec41a1aa2162d2edaf05
 //@Configuration
 ////@EnableWebSecurity(debug = true)//已经自动配置了，此处只是为了打印debug信息
 ////@EnableGlobalMethodSecurity(prePostEnabled = true) //开启security注解

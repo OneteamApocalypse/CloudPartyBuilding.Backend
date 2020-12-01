@@ -5,10 +5,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.text.SimpleDateFormat;
-<<<<<<< HEAD:src/main/java/apocalypse/cloudpartybuilding/controller/Test/JobTask.java
-
-=======
->>>>>>> cacdb2319f2f90261ff5ec41a1aa2162d2edaf05:src/main/java/apocalypse/cloudpartybuilding/controller/JobTask.java
 @Component
 public class JobTask {
 
