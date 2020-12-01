@@ -57,6 +57,7 @@
         </javaClientGenerator>
 
         <table tableName="report"
+        
                enableCountByExample="false"
                enableUpdateByExample="false"
                enableDeleteByExample="false"
