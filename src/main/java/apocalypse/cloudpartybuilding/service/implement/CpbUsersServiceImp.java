@@ -39,6 +39,7 @@ public class CpbUsersServiceImp implements CpbUsersService {
         }else{
             //不存在重复电话号码 //可注册
             log.warn("电话号码不存在了");
+            cpbUsers.setUsersPassword(userPasswordEncrypt);
             return cpbUsersMapper.signup(cpbUsers);
         }
     }
