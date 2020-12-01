@@ -1,6 +1,6 @@
 package apocalypse.cloudpartybuilding.controller;
 
-import apocalypse.cloudpartybuilding.config.Mail;
+import apocalypse.cloudpartybuilding.util.Mail;
 import apocalypse.cloudpartybuilding.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
@@ -26,19 +26,19 @@ public class MailController{
 
     // 发送不带格式的文本
     @Async
-    @GetMapping("post")
+    @GetMapping("/post")
     public void postMail() {
         Mail mail = new Mail();
         mail.setTo("2796675652@qq.com");
-        mail.setSubject("automatic");
-        mail.setContent("自动邮件发布");
+        mail.setSubject("云上党建");
+        mail.setContent("欢迎加入云上党建");
         mailService.sendMail(mail);
 //        return ResultGenerator.getSuccessResult().setMessage("发送成功");
     }
 
     // 发送Html邮件
     @Async
-    @GetMapping("postHtml")
+    @GetMapping("/postHtml")
     public void postHtmlMail() throws MessagingException {
         String content = "<html>\n" +
                 "<body>\n" +
@@ -55,7 +55,7 @@ public class MailController{
 
     // 发送带附件的邮件
     @Async
-    @GetMapping("postAttachment")
+    @GetMapping("/postAttachment")
     public void postAttachmentsMail() throws MessagingException {
         Mail mail = new Mail();
         mail.setTo("2796675652@qq.com");
@@ -68,12 +68,12 @@ public class MailController{
 
     // 发送 Html 模板邮件
     @Async
-    @GetMapping("postTemplate")
+    @GetMapping("/postTemplate")
     public void postTemplateMail() throws MessagingException {
         Context context = new Context();
         Map<String, Object> emailParam = new HashMap<>();
         emailParam.put("name", "产品终端更换名字");
-        emailParam.put("content", "牛牛终端");
+        emailParam.put("content", "云上党建");
         emailParam.put("person", "Alex Wong");
         context.setVariable("emailParam", emailParam);
         String emailTemplate = templateEngine.process("emailTemplate", context);

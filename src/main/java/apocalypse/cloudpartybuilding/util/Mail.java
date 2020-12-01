@@ -1,4 +1,4 @@
-package apocalypse.cloudpartybuilding.config;
+package apocalypse.cloudpartybuilding.util;
 
 import lombok.Data;
 

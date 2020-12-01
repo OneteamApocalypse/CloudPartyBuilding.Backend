@@ -1,7 +1,7 @@
 package apocalypse.cloudpartybuilding;
 
 
-import apocalypse.cloudpartybuilding.config.Mail;
+import apocalypse.cloudpartybuilding.util.Mail;
 import apocalypse.cloudpartybuilding.service.MailService;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

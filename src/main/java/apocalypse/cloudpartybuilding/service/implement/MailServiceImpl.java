@@ -1,6 +1,6 @@
 package apocalypse.cloudpartybuilding.service.implement;
 
-import apocalypse.cloudpartybuilding.config.Mail;
+import apocalypse.cloudpartybuilding.util.Mail;
 import apocalypse.cloudpartybuilding.service.MailService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

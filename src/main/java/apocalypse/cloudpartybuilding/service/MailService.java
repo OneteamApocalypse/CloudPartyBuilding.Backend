@@ -1,6 +1,6 @@
 package apocalypse.cloudpartybuilding.service;
 
-import apocalypse.cloudpartybuilding.config.Mail;
+import apocalypse.cloudpartybuilding.util.Mail;
 
 import javax.mail.MessagingException;
 
